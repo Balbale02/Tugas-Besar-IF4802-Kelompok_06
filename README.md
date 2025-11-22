@@ -3,7 +3,7 @@ Program Multi-Linked List (1-N) relasi Paper &amp; Keyword secara modular. Paper
 
 Dibuat Oleh:
 1. Iqbal Maulana Sastra (103012400404)
-2. Muhammad Akhtar Siddiq (103012400039)
+2. Muhammad Akhtar Siddiq (103012400089)
 # Fitur
 
  # Struktur Data
