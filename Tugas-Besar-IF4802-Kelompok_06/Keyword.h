@@ -12,8 +12,6 @@ struct NodeKeyword {
     NodeKeyword *nextKeyword;
 };
 //pancingan
-    NodeKeyword *createKeywordNode(string nama, string kat) {
-    NodeKeyword *newNode = new NodeKeyword();
-}
+    NodeKeyword *createKeywordNode(string nama, string kat);
 
 #endif
