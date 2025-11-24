@@ -2,21 +2,48 @@
 #define PAPER_H
 
 #include "Keyword.h"
+#include <iostream>
+
 using namespace std;
 
-struct NodePaper {
+struct InfotypePaper {
     string judul;
-    string penerbit;
     string doi;
-
-    NodePaper* nextPaper;      // Ke samping
-    NodeKeyword* headKeyword;  // Ke bawah
+    string penulis;
+    string email;
+    string afiliasi;
+    int tahunTerbit;
 };
 
-//pancingan
-void createPaper(NodePaper* &head, string judul, string penerbit, string doi);
-NodePaper* findPaper(NodePaper* head, string judulCari);
-void addKeywordToPaper(NodePaper* head, string judulPaper, string namaKey, string katKey);
-void showAllPapers(NodePaper* head);
+typedef struct elementPaper *addressPaper;
+
+struct elementPaper {
+    InfotypePaper info;
+    addressPaper next;
+    addressPaper prev;
+    addressKeyword firstKeyword;
+};
+
+struct ListPaper {
+    addressPaper first;
+    addressPaper last;
+};
+
+void createListPaper(ListPaper &L);                                                 //Iqbal
+void createElementPaper(InfotypePaper data, addressPaper &P);                       //Iqbal
+
+void insertFirstPaper(ListPaper &L, addressPaper P);                                //Akhtar
+void insertLastPaper(ListPaper &L, addressPaper P);                                 //Iqbal
+void insertAfterPaper(ListPaper &L, addressPaper prec, addressPaper P);             //Akhtar
+
+void deleteFirstPaper(ListPaper &L, addressPaper &P);                               //Akhtar
+void deleteLastPaper(ListPaper &L, addressPaper &P);                                //Iqbal
+void deleteAfterPaper(ListPaper &L, addressPaper prec, addressPaper &P);            //Akhtar
+
+addressPaper findElementPaper(ListPaper L, string judulCari);                       //Iqbal
+void printAllData(ListPaper L);
+
+void addKeywordToPaper(ListPaper &L, string judulPaper, InfotypeKeyword dataKey);   //Akhtar
+void deleteKeywordFromPaper(ListPaper &L, string judulPaper, string namaKey);       //Iqbal
 
 #endif
