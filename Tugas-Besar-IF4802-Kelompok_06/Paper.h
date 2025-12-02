@@ -46,4 +46,7 @@ void printAllData(ListPaper L);
 void addKeywordToPaper(ListPaper &L, string judulPaper, InfotypeKeyword dataKey);   //Akhtar
 void deleteKeywordFromPaper(ListPaper &L, string judulPaper, string namaKey);       //Iqbal
 
+bool isPaperEmpty(ListPaper &L); // Akhtar
+
 #endif
+
