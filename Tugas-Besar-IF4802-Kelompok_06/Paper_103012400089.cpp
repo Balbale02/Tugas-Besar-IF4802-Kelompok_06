@@ -72,6 +72,3 @@ void deleteAfterPaper(ListPaper &L, addressPaper prec, addressPaper &P){
     }
 
 }
-void addKeywordToPaper(ListPaper &L, string judulPaper, InfotypeKeyword dataKey){
-
-}

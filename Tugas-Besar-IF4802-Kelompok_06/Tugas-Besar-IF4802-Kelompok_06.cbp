@@ -33,8 +33,10 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="Keyword.h" />
+		<Unit filename="Keyword_103012400089.cpp" />
 		<Unit filename="Keyword_103012400404.cpp" />
 		<Unit filename="Paper.h" />
+		<Unit filename="Paper_103012400089.cpp" />
 		<Unit filename="Paper_103012400404.cpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="main_admin.cpp" />

@@ -17,16 +17,16 @@ struct elementKeyword {
     addressKeyword next;
 };
 
-void createElementKeyword(InfotypeKeyword data, addressKeyword &P); //Akhtar
-void insertFirstKeyword(addressKeyword &first, addressKeyword P);   //Akhtar
-void insertLastKeyword(addressKeyword &first, addressKeyword P);    //Iqbal
+void createElementKeyword(InfotypeKeyword data, addressKeyword &P);                     //Akhtar
+void insertFirstKeyword(addressKeyword &first, addressKeyword P);                       //Akhtar
+void insertLastKeyword(addressKeyword &first, addressKeyword P);                        //Iqbal
 void insertAfterKeyword(addressKeyword &first, addressKeyword P, addressKeyword prec);  //Iqbal
 
-void deleteFirstKeyword(addressKeyword &first, addressKeyword &P);  //Akhtar
-void deleteLastKeyword(addressKeyword &first, addressKeyword &P);   //Akhtar
-void deleteAfterKeyword(addressKeyword prec, addressKeyword &P);    //Iqbal
+void deleteFirstKeyword(addressKeyword &first, addressKeyword &P);                      //Akhtar
+void deleteLastKeyword(addressKeyword &first, addressKeyword &P);                       //Akhtar
+void deleteAfterKeyword(addressKeyword prec, addressKeyword &P);                        //Iqbal
 
-addressKeyword findElementKeyword(addressKeyword first, string namaCari);   //Iqbal
-void printKeywords(addressKeyword first);   //Iqbal
+addressKeyword findElementKeyword(addressKeyword first, string namaCari);               //Iqbal
+void printKeywords(addressKeyword first);                                               //Iqbal
 
 #endif
