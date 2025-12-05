@@ -57,6 +57,7 @@ void menuParent(){
 }
 
 void menuChild(){
+    addressPaper q;
     int option=-99;
     while (option != 0) {
         system("cls");

@@ -41,9 +41,8 @@ void deleteLastPaper(ListPaper &L, addressPaper &P);                            
 void deleteAfterPaper(ListPaper &L, addressPaper prec, addressPaper &P);            //Akhtar
 
 addressPaper findElementPaper(ListPaper L, string judulCari);                       //Iqbal
-void printAllData(ListPaper L);
-
-void addKeywordToPaper(ListPaper &L, string judulPaper, InfotypeKeyword dataKey);   //Akhtar
+void printAllData(ListPaper L);                                                     //Akhtar
+void addKeywordToPaper(ListPaper &L, string judulPaper, InfotypeKeyword dataKey);   //Iqbal
 void deleteKeywordFromPaper(ListPaper &L, string judulPaper, string namaKey);       //Iqbal
 
 bool isPaperEmpty(ListPaper &L); // Akhtar
