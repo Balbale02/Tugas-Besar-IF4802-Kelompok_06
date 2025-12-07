@@ -45,7 +45,7 @@ void menuParent(){
         cout << "|| 5.  Delete last           ||" << endl;
         cout << "|| 6.  Delete after          ||" << endl;
         cout << "|| 7.  Cari paper            ||" << endl;
-        cout << "|| 8.  View parent           ||" << endl;
+        cout << "|| 8.  View paper            ||" << endl;
         cout << "|| 0.  Exit                  ||"<< endl;
         cout << "============================== " << endl;
         cout << "Choose your option : ";
@@ -179,7 +179,7 @@ void menuParent(){
               break;
 
            case 6  :
-              cout << "Masukan judul paper dimana elemen setelahnya akan dihapus";
+              cout << "Masukan judul paper dimana elemen setelahnya akan dihapus: ";
               cin >> judulCari;
 
               q = findElementPaper(L, judulCari);
