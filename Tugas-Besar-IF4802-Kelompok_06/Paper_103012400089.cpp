@@ -17,9 +17,16 @@ void insertFirstPaper(ListPaper &L, addressPaper P){
     }
 }
 void insertAfterPaper(ListPaper &L, addressPaper prec, addressPaper P){
+    if(prec == nullptr){
+        cout << "precursor tidak valid" << endl;
+        return;
+    }
+
     if(isPaperEmpty(L)){
         L.first = P;
         L.last = P;
+        P->next = nullptr;
+        P->prev = nullptr;
     }else if(prec == L.last){
          prec->next = P;
          P->prev = prec;
@@ -36,6 +43,7 @@ void insertAfterPaper(ListPaper &L, addressPaper prec, addressPaper P){
 void deleteFirstPaper(ListPaper &L, addressPaper &P){
     if(isPaperEmpty(L)){
         cout << "List masih kosong" << endl;
+        P = nullptr;
     }else if(L.first == L.last){
         P = L.first;
         L.first = nullptr;
@@ -50,11 +58,13 @@ void deleteFirstPaper(ListPaper &L, addressPaper &P){
 void deleteAfterPaper(ListPaper &L, addressPaper prec, addressPaper &P){
     if(isPaperEmpty(L)){
         cout << "List masih kosong" << endl;
+        P = nullptr;
         return;
     }
 
     if(prec->next == nullptr){
         cout << "List setelah list ini kosong" << endl;
+        P = nullptr;
         return;
     }
 
@@ -130,12 +140,14 @@ void printPaper(ListPaper L){
 
     while(q != nullptr){
         cout << "PAPER KE-" << i << endl;
+        cout << endl;
         cout << "Judul       : " << q->info.judul << endl;
         cout << "doi         : " << q->info.doi << endl;
         cout << "Penulis     : " << q->info.penulis << endl;
         cout << "Email       : " << q->info.email << endl;
         cout << "Afiliasi    : " << q->info.afiliasi << endl;
         cout << "Tahun terbit: " << q->info.tahunTerbit << endl;
+        cout << endl;
         q = q->next;
         i++;
     }
