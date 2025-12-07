@@ -259,16 +259,14 @@ void menuChild(){
     while (option != 0) {
         system("cls");
         cout << "============ Menu ============ " << endl;
-        cout << "|| 1.  Buat list parent      ||" << endl;
-        cout << "|| 2.  Buat elemen parent    ||" << endl;
-        cout << "|| 3.  Insert first          ||" << endl;
-        cout << "|| 4.  Insert last           ||" << endl;
-        cout << "|| 5.  Insert after          ||" << endl;
-        cout << "|| 6.  Delete first          ||" << endl;
-        cout << "|| 7.  Delete last           ||" << endl;
-        cout << "|| 8.  Delete after          ||" << endl;
-        cout << "|| 9.  Cari paper            ||" << endl;
-        cout << "|| 10. View parent           ||" << endl;
+        cout << "|| 1.  Insert first          ||" << endl;
+        cout << "|| 2.  Insert last           ||" << endl;
+        cout << "|| 3.  Insert after          ||" << endl;
+        cout << "|| 4.  Delete first          ||" << endl;
+        cout << "|| 5.  Delete last           ||" << endl;
+        cout << "|| 6.  Delete after          ||" << endl;
+        cout << "|| 7.  Cari keyword          ||" << endl;
+        cout << "|| 8.  View keyword          ||" << endl;
         cout << "============================== " << endl;
         cout << "Choose your option : ";
         cin >> option;
@@ -286,3 +284,4 @@ void menuChild(){
         }
     }
 }
+
