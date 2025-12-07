@@ -126,7 +126,6 @@ void menuParent(){
               cout << "Tahun terbit: ";
               cin >> dataPaper.tahunTerbit;
 
-              createElementPaper(dataPaper, P);
 
               cout << "Elemen ingin dimasukan setelah judul paper apa: ";
               cin >> judulCari;
@@ -136,6 +135,7 @@ void menuParent(){
               if(q == nullptr){
                 cout << "Paper tidak ditemukan!";
               }else{
+                createElementPaper(dataPaper, P);
                 insertAfterPaper(L, q, P);
                 cout << "Elemen sudah dimasukan setelah elemen dengan paper berjudul " << judulCari << endl;
               }
@@ -149,26 +149,85 @@ void menuParent(){
               break;
 
            case 4  :
-              cout << "you choose option 2" << endl;
-              // write your code here
+              deleteFirstPaper(L, P);
+              if(P == nullptr){
+                cout << "List masih kosong, tidak ada data yang dihapus." <<endl;
+              }else{
+                cout << "Elemen pertama sudah dihapus dari list" << endl;
+              }
+
+              cout << endl;
+              cout << "\nTekan ENTER untuk kembali ke menu...";
+              cin.ignore();
+              cin.get();
 
               break;
 
            case 5  :
-              cout << "you choose option 2" << endl;
-              // write your code here
+              deleteLastPaper(L, P);
+              if(P == nullptr){
+                cout << "List masih kosong, tidak ada data yang dihapus." <<endl;
+              }else{
+                cout << "Elemen terakhir sudah dihapus dari list" << endl;
+              }
+
+              cout << endl;
+              cout << "\nTekan ENTER untuk kembali ke menu...";
+              cin.ignore();
+              cin.get();
 
               break;
 
            case 6  :
-              cout << "you choose option 2" << endl;
-              // write your code here
+              cout << "Masukan judul paper dimana elemen setelahnya akan dihapus";
+              cin >> judulCari;
+
+              q = findElementPaper(L, judulCari);
+
+              if(q == nullptr){
+                cout << "Paper tidak ditemukan" << endl;
+              }else if(q == L.last){
+                cout << "Elemen setelah paper ini tidak ada" << endl;
+              }else{
+                deleteAfterPaper(L, q, P);
+                if(P != nullptr){
+                    cout << "elemen setelah judul " << judulCari << " telah dihapus" << endl;
+                }else{
+                    cout << "Penghapusan gagal" << endl;
+                }
+              }
+
+              cout << endl;
+              cout << "\nTekan ENTER untuk kembali ke menu...";
+              cin.ignore();
+              cin.get();
 
               break;
 
            case 7  :
-              cout << "you choose option 2" << endl;
-              //isi
+              cout << "Masukan judul paper yang ingin dicari: ";
+              cin >> judulCari;
+
+              q = findElementPaper(L, judulCari);
+
+              if(q == nullptr){
+                cout << "Paper tidak ditemukan!" << endl;
+              }else{
+                cout << "Paper ditemukan!" << endl;
+                cout << "Berikut paper nya" << endl;
+                cout << "Judul        : " << q->info.judul << endl;
+                cout << "DOI          : " << q->info.doi << endl;
+                cout << "Penulis      : " << q->info.penulis << endl;
+                cout << "Email        : " << q->info.email << endl;
+                cout << "Afiliasi     : " << q->info.afiliasi << endl;
+                cout << "Tahun Terbit : " << q->info.tahunTerbit << endl;
+
+              }
+
+              cout << endl;
+              cout << "\nTekan ENTER untuk kembali ke menu...";
+              cin.ignore();
+              cin.get();
 
               break;
 
@@ -179,6 +238,12 @@ void menuParent(){
               cout << "======================" << endl;
 
               cout << "\nTekan ENTER untuk kembali ke menu...";
+              cin.ignore();
+              cin.get();
+              break;
+
+            default:
+              cout << "Pilihan tidak valid!" << endl;
               cin.ignore();
               cin.get();
               break;
