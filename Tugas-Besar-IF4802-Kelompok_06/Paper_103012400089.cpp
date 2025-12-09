@@ -85,45 +85,35 @@ void deleteAfterPaper(ListPaper &L, addressPaper prec, addressPaper &P){
 
 void printAllData(ListPaper L){
     addressPaper q;
-    addressKeyword p;
-    int i, k;
+    int i;
 
     if(L.first == nullptr){
         cout << "Data masih kosong" << endl;
-        return ;
+        return;
     }
 
     q = L.first;
     i = 1;
 
     cout << "Berikut merupakan tampilan seluruh data" << endl;
-    while(q != nullptr){
-        k = 1;
-        cout << "PAPER KE-" << i << endl;
-        cout << "Judul       : " << q->info.judul << endl;
-        cout << "doi         : " << q->info.doi << endl;
-        cout << "Penulis     : " << q->info.penulis << endl;
-        cout << "Email       : " << q->info.email << endl;
-        cout << "Afiliasi    : " << q->info.afiliasi << endl;
-        cout << "Tahun terbit: " << q->info.tahunTerbit << endl;
-        cout << endl;
-        cout << "Dengan list keyword sebagai berikut" << endl;
 
-        p = q->firstKeyword;
-        while(p != nullptr){
-            cout << "KEYWORD KE-" << k << endl;
-            cout << "Nama keyword: " << p->info.namaKeyword << endl;
-            cout << "Kategori    : " << p->info.kategori << endl;
-            cout << "Relevansi   : " << p->info.relevansi << "/10" << endl;
-            cout << endl;
-            p = p->next;
-            k++;
-        }
+    while(q != nullptr){
+        cout << "========== PAPER KE-" << i << " ==========" << endl;
+        cout << "Judul        : " << q->info.judul << endl;
+        cout << "DOI          : " << q->info.doi << endl;
+        cout << "Penulis      : " << q->info.penulis << endl;
+        cout << "Email        : " << q->info.email << endl;
+        cout << "Afiliasi     : " << q->info.afiliasi << endl;
+        cout << "Tahun terbit : " << q->info.tahunTerbit << endl;
+
+        cout << "List keyword :" << endl;
+
+        printKeywords(q->firstKeyword);
+        cout << endl;
         q = q->next;
         i++;
     }
 }
-
 void printPaper(ListPaper L){
     addressPaper q;
     int i;
@@ -152,3 +142,4 @@ void printPaper(ListPaper L){
         i++;
     }
 }
+
