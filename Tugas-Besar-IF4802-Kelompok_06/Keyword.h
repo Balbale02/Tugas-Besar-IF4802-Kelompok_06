@@ -28,5 +28,6 @@ void deleteAfterKeyword(addressKeyword prec, addressKeyword &P);                
 
 addressKeyword findElementKeyword(addressKeyword first, string namaCari);               //Iqbal
 void printKeywords(addressKeyword first);                                               //Iqbal
+void sortKeywordsInPaper(addressPaper P);                                               //Iqbal
 
 #endif
