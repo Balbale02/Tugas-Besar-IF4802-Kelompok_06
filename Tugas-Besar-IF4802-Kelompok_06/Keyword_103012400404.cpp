@@ -19,6 +19,12 @@ void insertAfterKeyword(addressKeyword &first, addressKeyword P, addressKeyword 
     }
 }
 
+void deleteAfterKeyword(addressKeyword prec, addressKeyword &P) {
+    P = prec->next;
+    prec->next = P->next;
+    P->next = nullptr;
+}
+
 addressKeyword findElementKeyword(addressKeyword first, string namaCari) {
     addressKeyword P = first;
     while (P != nullptr) {
