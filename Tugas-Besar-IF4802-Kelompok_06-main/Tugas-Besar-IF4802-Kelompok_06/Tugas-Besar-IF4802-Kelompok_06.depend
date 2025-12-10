@@ -1,0 +1,73 @@
+# depslib dependency file v1.0
+1763823878 source:c:\users\iqbal\downloads\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\keyword_103012400404.cpp
+	"paper.h"
+
+1763823878 c:\users\iqbal\downloads\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\paper.h
+	"Keyword.h"
+
+1763824168 c:\users\iqbal\downloads\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\keyword.h
+	<iostream>
+	<string>
+
+1763823878 source:c:\users\iqbal\downloads\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\main.cpp
+	<iostream>
+	"main_admin.h"
+	"main_user.h"
+
+1763823878 c:\users\iqbal\downloads\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\main_admin.h
+	<iostream>
+
+1763823878 c:\users\iqbal\downloads\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\main_user.h
+	<iostream>
+
+1763823878 source:c:\users\iqbal\downloads\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\main_admin.cpp
+	"main_admin.h"
+	"Paper.h"
+
+1763823878 source:c:\users\iqbal\downloads\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\main_user.cpp
+	"main_user.h"
+	"Paper.h"
+
+1763823878 source:c:\users\iqbal\downloads\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\paper_103012400404.cpp
+
+1765295174 source:e:\aa kuliah\struktur data\tugas\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\keyword_103012400404.cpp
+	"paper.h"
+
+1765344917 e:\aa kuliah\struktur data\tugas\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\paper.h
+	"Keyword.h"
+	<iostream>
+
+1765344985 e:\aa kuliah\struktur data\tugas\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\keyword.h
+	<iostream>
+	<string>
+
+1765124533 source:e:\aa kuliah\struktur data\tugas\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\main.cpp
+	<iostream>
+	"main_admin.h"
+	"main_user.h"
+
+1765124533 e:\aa kuliah\struktur data\tugas\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\main_admin.h
+	<iostream>
+
+1765124533 e:\aa kuliah\struktur data\tugas\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\main_user.h
+	<iostream>
+	"Paper.h"
+
+1765340333 source:e:\aa kuliah\struktur data\tugas\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\main_admin.cpp
+	"main_admin.h"
+	"Paper.h"
+
+1765124533 source:e:\aa kuliah\struktur data\tugas\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\main_user.cpp
+	"main_user.h"
+	"Paper.h"
+
+1765124533 source:e:\aa kuliah\struktur data\tugas\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\keyword_103012400089.cpp
+	"Paper.h"
+
+1765294488 source:e:\aa kuliah\struktur data\tugas\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\paper_103012400089.cpp
+	<iostream>
+	"Paper.h"
+
+1765340420 source:e:\aa kuliah\struktur data\tugas\tugas-besar-if4802-kelompok_06-main\tugas-besar-if4802-kelompok_06\paper_103012400404.cpp
+	"Paper.h"
+
