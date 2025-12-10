@@ -56,24 +56,3 @@ void printKeywords(addressKeyword first) {
         }
     }
 }
-
-void sortKeywordsInPaper(addressPaper P) {
-    if (P == nullptr || P->firstKeyword == nullptr) return;
-
-    bool swapped = true;
-    while (swapped) {
-        swapped = false;
-        addressKeyword K = P->firstKeyword;
-
-        while (K->next != nullptr) {
-            if (K->info.namaKeyword > K->next->info.namaKeyword) {
-                InfotypeKeyword temp = K->info;
-                K->info = K->next->info;
-                K->next->info = temp;
-
-                swapped = true;
-            }
-            K = K->next;
-        }
-    }
-}

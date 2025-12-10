@@ -126,7 +126,7 @@ void menuParent(){
               cout << "Tahun terbit: ";
               cin >> dataPaper.tahunTerbit;
 
-
+              printPaper(L);
               cout << "Elemen ingin dimasukan setelah judul paper apa: ";
               cin >> judulCari;
 
@@ -211,7 +211,9 @@ void menuParent(){
               q = findElementPaper(L, judulCari);
 
               if(q == nullptr){
-                cout << "Paper tidak ditemukan!" << endl;
+                cout << "Paper tidak ditemukan!" << endl<<endl;
+                cout <<"Ini List Paper yang ada" << endl;
+                printPaper(L);
               }else{
                 cout << "Paper ditemukan!" << endl;
                 cout << "Berikut paper nya" << endl;
@@ -252,7 +254,10 @@ void menuParent(){
 }
 
 void menuChild(){
+
     addressPaper q;
+    addressKeyword key;
+    InfotypeKeyword dataK;
     int option=-99;
 
 
@@ -267,12 +272,41 @@ void menuChild(){
         cout << "|| 6.  Delete after          ||" << endl;
         cout << "|| 7.  Cari keyword          ||" << endl;
         cout << "|| 8.  View keyword          ||" << endl;
+        cout << "|| 0.  Exit                  ||" << endl;
         cout << "============================== " << endl;
         cout << "Choose your option : ";
         cin >> option;
         switch(option) {
+
+           case 0  :
+              cout << "Keluar dari program..." << endl;
+
+              break;
+
            case 1  :
-              cout << "you choose option 1" << endl;
+              cout << "Silahkan masukan data elemen keyword" << endl;
+
+              cout << "Nama Keyword: ";
+              cin >> dataK.namaKeyword;
+              cout << "Kategori: ";
+              cin >> dataK.kategori;
+              cout << "Relevansi (1-10): ";
+              cin >> dataK.relevansi;
+              if (dataK.relevansi >= 10){
+                dataK.relevansi = 10;
+              }else if(dataK.relevansi<=1){
+                  dataK.relevansi = 1;
+              }
+
+              createElementKeyword(dataK,key);
+
+
+              cout << endl;
+              cout << "Elemen sudah dimasukan pada elemen pertama" << endl;
+              cout << endl;
+              cout << "\nTekan ENTER untuk kembali ke menu...";
+              cin.ignore();
+              cin.get();
 
               break;
            case 2  :

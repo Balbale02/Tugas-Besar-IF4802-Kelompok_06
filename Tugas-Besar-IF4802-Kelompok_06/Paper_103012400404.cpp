@@ -55,51 +55,59 @@ addressPaper findElementPaper(ListPaper L, string judulCari) {
 
 void addKeywordToPaper(ListPaper &L, string judulPaper, InfotypeKeyword dataKey) {
     addressPaper P = findElementPaper(L, judulPaper);
+
     if (P == nullptr) {
         cout << "[Error] Paper '" << judulPaper << "' tidak ditemukan." << endl;
         return;
     }
+
     addressKeyword K_Baru;
     createElementKeyword(dataKey, K_Baru);
-    int pilihan = 0;
+    int pilihan = -99;
     cout << "\n>>> OPSI TAMBAH KEYWORD KE: " << P->info.judul << " <<<" << endl;
-    cout << "1. Insert First (Paling Depan)" << endl;
-    cout << "2. Insert Last (Paling Belakang)" << endl;
-    cout << "3. Insert After (Setelah Keyword Tertentu)" << endl;
-    cout << "Pilihan Anda (1-3): ";
-    cin >> pilihan;
+    cin>>pilihan;
 
-    if (pilihan == 1) {
-        // --- Insert First ---
-        insertFirstKeyword(P->firstKeyword, K_Baru);
-        cout << "[Sukses] Keyword ditambahkan di awal." << endl;
-    } else if (pilihan == 2) {
-        // --- Insert Last ---
-        insertLastKeyword(P->firstKeyword, K_Baru);
-        cout << "[Sukses] Keyword ditambahkan di akhir." << endl;
-    } else if (pilihan == 3) {
-        // --- Insert After ---
-        if (P->firstKeyword == nullptr) {
-            cout << "[Info] List kosong, otomatis insert first." << endl;
+    switch (pilihan) {
+        case 1:
+            // --- Insert First ---
             insertFirstKeyword(P->firstKeyword, K_Baru);
-        } else {
-            string namaPrec;
-            cout << "Masukkan nama keyword sebelumnya (Predecessor): ";
-            cin >> ws; // Handle buffer enter
-            getline(cin, namaPrec);
-            addressKeyword Prec = findElementKeyword(P->firstKeyword, namaPrec);
+            cout << "[Sukses] Keyword ditambahkan di awal." << endl;
+            break;
 
-            if (Prec != nullptr) {
-                insertAfterKeyword(P->firstKeyword, K_Baru, Prec);
-                cout << "[Sukses] Keyword ditambahkan setelah '" << namaPrec << "'." << endl;
+        case 2:
+            // --- Insert Last ---
+            insertLastKeyword(P->firstKeyword, K_Baru);
+            cout << "[Sukses] Keyword ditambahkan di akhir." << endl;
+            break;
+
+        case 3: {
+            // --- Insert After ---
+            // Pakai kurung kurawal {} karena ada deklarasi variabel di dalam case
+            if (P->firstKeyword == nullptr) {
+                cout << "[Info] List kosong, otomatis insert first." << endl;
+                insertFirstKeyword(P->firstKeyword, K_Baru);
             } else {
-                cout << "[Gagal] Keyword '" << namaPrec << "' tidak ditemukan. Batal insert." << endl;
-                return;
+                string namaPrec;
+                cout << "Masukkan nama keyword sebelumnya (Predecessor): ";
+                cin >> ws;
+                getline(cin, namaPrec);
+
+                addressKeyword Prec = findElementKeyword(P->firstKeyword, namaPrec);
+
+                if (Prec != nullptr) {
+                    insertAfterKeyword(P->firstKeyword, K_Baru, Prec);
+                    cout << "[Sukses] Keyword ditambahkan setelah '" << namaPrec << "'." << endl;
+                } else {
+                    cout << "[Gagal] Keyword '" << namaPrec << "' tidak ditemukan. Batal insert." << endl;
+                    return;
+                }
             }
+            break;
         }
-    } else {
-        cout << "[Error] Pilihan tidak valid." << endl;
-        return;
+
+        default:
+            cout << "[Error] Pilihan tidak valid." << endl;
+            return;
     }
     cout << "\n[UPDATE DATA PAPER: " << P->info.judul << "]" << endl;
     printKeywords(P->firstKeyword);
@@ -154,7 +162,7 @@ void deleteKeywordFromPaper(ListPaper &L, string judulPaper, string namaKey) {
 }
 
 void sortPapersByTitle(ListPaper &L) {
-    if (L.first == nullptr || L.first->next == nullptr) return
+    if (L.first == nullptr || L.first->next == nullptr) return;
 
     bool swapped = true;
     while (swapped) {

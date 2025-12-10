@@ -7,7 +7,7 @@ using namespace std;
 struct InfotypeKeyword {
     string namaKeyword;  // Contoh: "Machine Learning"
     string kategori;     // Contoh: "Topic", "Method", "Tool"
-    int relevansi;       // Skor 0-100 seberapa pas keywordnya
+    int relevansi;       // Skor 0-10 seberapa pas keywordnya
 };
 
 typedef struct elementKeyword *addressKeyword;
@@ -28,6 +28,6 @@ void deleteAfterKeyword(addressKeyword prec, addressKeyword &P);                
 
 addressKeyword findElementKeyword(addressKeyword first, string namaCari);               //Iqbal
 void printKeywords(addressKeyword first);                                               //Iqbal
-void sortKeywordsInPaper(addressPaper P);                                               //Iqbal
+
 
 #endif

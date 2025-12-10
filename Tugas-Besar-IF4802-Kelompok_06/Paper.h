@@ -47,8 +47,8 @@ void addKeywordToPaper(ListPaper &L, string judulPaper, InfotypeKeyword dataKey)
 void deleteKeywordFromPaper(ListPaper &L, string judulPaper, string namaKey);       //Iqbal
 void sortPapersByTitle(ListPaper &L);                                               //Iqbal
 void sortEverythingAscending(ListPaper &L);                                         //Iqbal
-bool isPaperEmpty(ListPaper &L); // Akhtar
-
+bool isPaperEmpty(ListPaper &L);                                                    // Akhtar
+void sortKeywordsInPaper(addressPaper P);                                           //Akhtar
 #endif
 
 

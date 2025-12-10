@@ -142,4 +142,3 @@ void printPaper(ListPaper L){
         i++;
     }
 }
-
