@@ -6,21 +6,20 @@ void menuUser(){
     addressPaper P, q;
     InfotypePaper dataPaper;
     int option=-99;
-    
+
     createListPaper(L);
-    
+
     while (option != 0) {
         system("cls");
         cout << "===========================Menu=============================  " << endl;
         cout << "|| 1. Insert paper berdasarkan tahun terbit                ||" << endl;
-        cout << "|| 2. studi case 2                                         ||" << endl;
-        cout << "|| 3. Insert Keyword berdasarkan besar relevansi                                         ||" << endl;
-        cout << "|| 4. studi case 4                                         ||" << endl;
-        cout << "|| 5. studi case 5                                         ||" << endl;
-        cout << "|| 6. studi case 6                                         ||" << endl;
-        cout << "|| 7. studi case 7                                         ||" << endl;
-        cout << "|| 8. studi case 8                                         ||" << endl;
-        cout << "|| 9. studi case 9                                         ||" << endl;
+        cout << "|| 2. Hapus paper 5 tahun terakhir(Berdasarkan input)      ||" << endl;
+        cout << "|| 3. Insert Keyword berdasarkan besar relevansi           ||" << endl;
+        cout << "|| 4. Hapus keyword yang mengandung kategori tertentu      ||" << endl;
+        cout << "|| 5. komputasi                                            ||" << endl;
+        cout << "|| 6. Mencari paper dengan tahun terbit tertentu           ||" << endl;
+        cout << "|| 7. View paper                                           ||" << endl;
+        cout << "|| 8. Menampilkan keyword semua keyword secara unik        ||" << endl;
         cout << "|| 0. back                                                 ||" << endl;
         cout << "============================================================ " << endl;
         cout << "Choose your option : ";
@@ -28,7 +27,7 @@ void menuUser(){
         switch(option) {
            case 1  :
               addressPaper q;
-              
+
               cout << "Paper akan dimasukan dari paper yang paling lama diterbitkan hingga yang terbaru" << endl;
               cout << "Silahkan masukan data elemen parent" << endl;
               cout << "Judul: ";
@@ -43,23 +42,23 @@ void menuUser(){
               cin >> dataPaper.afiliasi;
               cout << "Tahun terbit: ";
               cin >> dataPaper.tahunTerbit;
-              
+
               createElementPaper(dataPaper, P);
-              
+
               q = L.first;
               if(q == nullptr){
                 insertFirstPaper(L, P);
                 cout << "Paper berhasil dimasukan dalam list" << endl;
                 return;
               }
-              
+
               if(dataPaper.tahunTerbit < q->info.tahunTerbit){
                 insertFirstPaper(L, P);
                 cout << "Paper berhasil dimasukan dalam list" << endl;
                 return;
               }
-              
-              
+
+
               while(q->next != nullptr){
                 if(dataPaper.tahunTerbit < q->next->info.tahunTerbit){
                     insertAfterPaper(L, q, P);
@@ -68,7 +67,7 @@ void menuUser(){
                 }
                 q = q->next;
               }
-              
+
               insertLastPaper(L, P);
               cout << "Paper berhasil dimasukan dalam list" << endl;
 
