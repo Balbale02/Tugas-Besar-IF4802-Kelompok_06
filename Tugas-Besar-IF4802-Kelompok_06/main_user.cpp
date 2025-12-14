@@ -242,12 +242,85 @@ void menuUser(ListPaper &L) {
                 cin.get();
                 break;
 
-            case 5  :
-                cout << "you choose option 5" << endl;
-                // kode
-                break;
+            case 5  :{
+                int subOption = -99;
+                while (subOption != 0) {
+                    system("cls");
+                    cout << "=========== MENU KOMPUTASI (SORTING) ===========" << endl;
+                    cout << "|| 1. Sort Parent Only (Judul Paper A-Z)      ||" << endl;
+                    cout << "|| 2. Sort Child Only (Keyword di Paper A-Z)  ||" << endl;
+                    cout << "|| 3. Sort Everything (Semua Data A-Z)        ||" << endl;
+                    cout << "|| 0. Kembali                                 ||" << endl;
+                    cout << "================================================" << endl;
+                    cout << "Pilihan: ";
+                    cin >> subOption;
 
-            case 6  :
+                    switch (subOption) {
+                        case 1:
+                            if (isPaperEmpty(L)) {
+                                cout << "[Info] List kosong." << endl;
+                            } else {
+                                cout << "\n[SEBELUM SORTING]" << endl;
+                                printPaper(L);
+                                cout << "\nSedang mengurutkan..." << endl;
+                                sortPapersByTitle(L);
+                                cout << "\n[SESUDAH SORTING]" << endl;
+                                printPaper(L);
+                            }
+                            cout << "\nTekan ENTER...";
+                            cin.ignore();
+                            cin.get();
+                            break;
+
+                        case 2:
+                            printPaper(L);
+                            cout << "Masukkan Judul Paper yang keywordnya mau diurutkan: ";
+                            cin >> judulCari;
+                            q = findElementPaper(L, judulCari);
+
+                            if (q == nullptr) {
+                                cout << "[Error] Paper tidak ditemukan." << endl;
+                            } else if (q->firstKeyword == nullptr) {
+                                cout << "[Info] Paper ini tidak punya keyword." << endl;
+                            } else {
+                                cout << "\n[SEBELUM SORTING] Keyword pada " << q->info.judul << ":" << endl;
+                                printKeywords(q->firstKeyword);
+                                sortKeywordsInPaper(q);
+                                cout << "\n[SESUDAH SORTING] Keyword pada " << q->info.judul << ":" << endl;
+                                printKeywords(q->firstKeyword);
+                            }
+                            cout << "\nTekan ENTER...";
+                            cin.ignore();
+                            cin.get();
+                            break;
+
+                        case 3:
+                            if (isPaperEmpty(L)) {
+                                cout << "[Info] List kosong." << endl;
+                            } else {
+                                cout << "Mengurutkan SELURUH Data (Parent & Child)..." << endl;
+                                sortEverythingAscending(L);
+                                cout << "\n[HASIL SORTING KESELURUHAN]" << endl;
+                                printAllData(L);
+                            }
+                            cout << "\nTekan ENTER...";
+                            cin.ignore();
+                            cin.get();
+                            break;
+
+                        case 0:
+                            cout << "Kembali ke menu user..." << endl;
+                            break;
+
+                        default:
+                            cout << "Pilihan tidak valid." << endl;
+                            cin.ignore(); cin.get();
+                            break;
+                    }
+                }
+                break;
+            }
+            case 6  :{
                 int cariTahun;
                 bool found = false;
 
@@ -275,9 +348,11 @@ void menuUser(ListPaper &L) {
                         cout << "Tidak ditemukan paper pada tahun " << cariTahun << "." << endl;
                     }
                 }
-                cout << "\nTekan ENTER..."; cin.ignore(); cin.get();
+                cout << "\nTekan ENTER...";
+                cin.ignore();
+                cin.get();
                 break;
-
+        }
             case 7  :
               cout << endl;
               cout << "===== DATA PAPER =====" << endl;
