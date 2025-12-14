@@ -4,7 +4,10 @@
 void menuUser(){
     ListPaper L;
     addressPaper P, q, prev;
+    addressKeyword k, r, Prev, curr;
     InfotypePaper dataPaper;
+    InfotypeKeyword dataK;
+    string judulCari, pilihKategori;
     int option=-99, pilihTahun;
 
     createListPaper(L);
@@ -20,6 +23,7 @@ void menuUser(){
         cout << "|| 6. Mencari paper dengan tahun terbit tertentu               ||" << endl;
         cout << "|| 7. View paper                                               ||" << endl;
         cout << "|| 8. Menampilkan keyword semua keyword secara unik            ||" << endl;
+        cout << "|| 9. Tampilkan seluruh data                                   ||" << endl;
         cout << "|| 0. back                                                     ||" << endl;
         cout << "================================================================ " << endl;
         cout << "Choose your option : ";
@@ -143,13 +147,118 @@ void menuUser(){
                break;
 
             case 3  :
-                cout << "you choose option 3" << endl;
-                // kode
+                bool Insert, sukses;
+                Insert = false;
+                sukses = false;
+
+                printPaper(L);
+                cout << "Keyowrd mau dimasukan paper dengan judul apa: ";
+                cin >> judulCari;
+
+                q = findElementPaper(L, judulCari);
+                if(q == nullptr){
+                    cout << "Judul tidak ditemukan!" << endl;
+                }else{
+                    cout << "Keyowrd akan dimasukan terurut berdasarkan relevansi" << endl;
+                    cout << "Nama Keyword: ";
+                    cin >> dataK.namaKeyword;
+                    cout << "Kategori: ";
+                    cin >> dataK.kategori;
+                    cout << "Relevansi (1-10): ";
+                    cin >> dataK.relevansi;
+
+                    if (dataK.relevansi >= 10){
+                        dataK.relevansi = 10;
+                    }else if(dataK.relevansi<=1){
+                        dataK.relevansi = 1;
+                    }
+
+                    createElementKeyword(dataK, k);
+
+                    if(q->firstKeyword == nullptr){
+                        insertFirstKeyword(q->firstKeyword, k);
+                    }else if(dataK.relevansi < q->firstKeyword->info.relevansi){
+                        insertFirstKeyword(q->firstKeyword, k);
+                    }else{
+                        r = q->firstKeyword;
+                        while(r->next != nullptr){
+                            if(dataK.relevansi < r->next->info.relevansi ){
+                                insertAfterKeyword(q->firstKeyword, k, r);
+                                Insert = true;
+                                break;
+                            }
+                            r = r->next;
+                        }
+
+                        if(!Insert){
+                        insertLastKeyword(q->firstKeyword, k);
+                        }
+                    }
+                    sukses = true;;
+                }
+
+                cout << endl;
+                if(sukses){
+                    cout << "Keyword berhasil dimasukan kedalam list" << endl;
+                }else{
+                    cout << "Keyword gagal dimasukan dalam list" << endl;
+                }
+                cout << "\nTekan ENTER untuk kembali ke menu...";
+                cin.ignore();
+                cin.get();
+
                 break;
 
             case 4  :
-                cout << "you choose option 3" << endl;
-                // kode
+                bool hapus;
+
+                hapus = false;
+                cout << "---Berikut merupakan tampilan semua data---" << endl;
+                printAllData(L);
+
+                cout << "Pilih kategori keyword yang ingin dihapus: ";
+                cin >> pilihKategori;
+
+                q = L.first;
+                while(q != nullptr){
+                    curr = q->firstKeyword;
+                    Prev = nullptr;
+
+                    while(curr != nullptr){
+                        if(curr->info.kategori == pilihKategori){
+                            hapus = true;
+
+                            if(Prev == nullptr){
+                                deleteFirstKeyword(q->firstKeyword, k);
+                                curr = q->firstKeyword;
+                            }else if(curr->next == nullptr){
+                                deleteLastKeyword(q->firstKeyword, k);
+                                curr = nullptr;
+                            }else{
+                                deleteAfterKeyword(Prev, k);
+                                curr = Prev->next;
+                            }
+                        }else{
+                            Prev = curr;
+                            curr = curr->next;
+                        }
+                    }
+                    q = q->next;
+                }
+
+                if(hapus){
+                    cout << "Keyword dengan kategori " << pilihKategori << " berhasil dihapus!" << endl;
+                }else{
+                    cout << "Tidak ada keyword dengan kategori tersebut" << endl;
+                }
+
+                cout << endl;
+                cout << "Berikut merupakan data setelah penghapusan" << endl;
+                printAllData(L);
+
+                cout << "\nTekan ENTER untuk kembali ke menu...";
+                cin.ignore();
+                cin.get();
                 break;
 
             case 5  :
@@ -180,9 +289,24 @@ void menuUser(){
                 // kode
                 break;
 
+            case 9  :
+                cout << "----BERIKUT TAMPILAN SELURUH DATA----" << endl;
+                printAllData(L);
+
+                cout << "\nTekan ENTER untuk kembali ke menu...";
+                cin.ignore();
+                cin.get();
+                break;
+
             case 0  :
-                cout << "you choose option 3" << endl;
-                // kode
+                cout << "Keluar dari program....." << endl;
+
+                break;
+
+            default:
+                cout << "Pilihan tidak valid!" << endl;
+                cin.ignore();
+                cin.get();
                 break;
         }
     }
