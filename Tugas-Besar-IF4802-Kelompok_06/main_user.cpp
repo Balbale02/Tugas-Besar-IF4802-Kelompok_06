@@ -16,17 +16,18 @@ void menuUser(ListPaper &L) {
         cout << "|| 2. Bersihkan Paper Invalid (Range Tahun)                    ||" << endl;
         cout << "|| 3. Insert Keyword (Sorted by Relevansi)                     ||" << endl;
         cout << "|| 4. Hapus Keyword Kategori Tertentu (Bulk Delete)            ||" << endl;
-        cout << "|| 5. Komputasi (Coming Soon)                                  ||" << endl;
-        cout << "|| 6. Cari Paper by Tahun (Coming Soon)                        ||" << endl;
+        cout << "|| 5. Komputasi                                                ||" << endl;
+        cout << "|| 6. Cari Paper by Tahun                                      ||" << endl;
         cout << "|| 7. View Paper (Parent Only)                                 ||" << endl;
-        cout << "|| 8. View Unik Keyword (Coming Soon)                          ||" << endl;
+        cout << "|| 8. View Unik Keyword (No Duplicate)                         ||" << endl;
         cout << "|| 9. Tampilkan Seluruh Data (Parent + Child)                  ||" << endl;
         cout << "|| 0. Back                                                     ||" << endl;
         cout << "=================================================================" << endl;
         cout << "Choose your option : ";
         cin >> option;
+
         switch(option) {
-           case 1: { // Gunakan kurung kurawal {}
+           case 1: {
                 bool inserted = false;
                 cout << "\n--- Insert Paper Terurut Tahun ---" << endl;
                 cout << "Judul        : "; cin >> dataPaper.judul;
@@ -242,13 +243,39 @@ void menuUser(ListPaper &L) {
                 break;
 
             case 5  :
-                cout << "you choose option 3" << endl;
+                cout << "you choose option 5" << endl;
                 // kode
                 break;
 
             case 6  :
-                cout << "you choose option 3" << endl;
-                // kode
+                int cariTahun;
+                bool found = false;
+
+                if (isPaperEmpty(L)) {
+                    cout << "[Info] List Kosong." << endl;
+                } else {
+                    cout << "Masukkan Tahun Terbit yang dicari: ";
+                    cin >> cariTahun;
+
+                    cout << "\n=== HASIL PENCARIAN PAPER TAHUN " << cariTahun << " ===" << endl;
+                    q = L.first;
+                    int no = 1;
+                    while (q != nullptr) {
+                        if (q->info.tahunTerbit == cariTahun) {
+                            cout << no << ". " << q->info.judul
+                                 << " | Penulis: " << q->info.penulis
+                                 << " | Afiliasi: " << q->info.afiliasi << endl;
+                            found = true;
+                            no++;
+                        }
+                        q = q->next;
+                    }
+
+                    if (!found) {
+                        cout << "Tidak ditemukan paper pada tahun " << cariTahun << "." << endl;
+                    }
+                }
+                cout << "\nTekan ENTER..."; cin.ignore(); cin.get();
                 break;
 
             case 7  :
@@ -265,8 +292,51 @@ void menuUser(ListPaper &L) {
                 break;
 
             case 8  :
-                cout << "you choose option 3" << endl;
-                // kode
+                if (isPaperEmpty(L)) {
+                    cout << "[Info] List Paper Kosong." << endl;
+                } else {
+                    cout << "\n=== DAFTAR KEYWORD UNIK (SEMUA PAPER) ===" << endl;
+                    addressKeyword headUnique = nullptr;
+                    addressKeyword tempK, check;
+                    q = L.first;
+                    int nomor = 1;
+
+                    while (q != nullptr) {
+                        curr = q->firstKeyword;
+
+                        while (curr != nullptr) {
+                            bool isDuplicate = false;
+                            check = headUnique;
+                            while (check != nullptr) {
+                                if (check->info.namaKeyword == curr->info.namaKeyword &&
+                                    check->info.kategori == curr->info.kategori) {
+                                    isDuplicate = true;
+                                    break;
+                                }
+                                check = check->next;
+                            }
+                            if (!isDuplicate) {
+                                cout << nomor << ". " << curr->info.namaKeyword
+                                     << " [" << curr->info.kategori << "]" << endl;
+                                nomor++;
+                                createElementKeyword(curr->info, tempK);
+                                insertFirstKeyword(headUnique, tempK);
+                            }
+
+                            curr = curr->next;
+                        }
+                        q = q->next;
+                    }
+
+                    while (headUnique != nullptr) {
+                        deleteFirstKeyword(headUnique, tempK);
+                        delete tempK;
+                    }
+                }
+                cout << "=========================================" << endl;
+                cout << "\nTekan ENTER...";
+                cin.ignore();
+                cin.get();
                 break;
 
             case 9  :
