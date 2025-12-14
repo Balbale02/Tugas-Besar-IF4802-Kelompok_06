@@ -15,6 +15,27 @@ void createElementPaper(InfotypePaper data, addressPaper &P) {
     P->firstKeyword = nullptr;
 }
 
+string pilihKategoriValid() {
+    int pil;
+    do {
+        cout << "   Pilih Kategori Keyword:" << endl;
+        cout << "   1. Machine Learning" << endl;
+        cout << "   2. Entertainment" << endl;
+        cout << "   3. Game" << endl;
+        cout << "   4. Tools" << endl;
+        cout << "   5. Web" << endl;
+        cout << "   Pilihan (1-5): ";
+        cin >> pil;
+        if (pil == 1) return "Machine Learning";
+        if (pil == 2) return "Entertainment";
+        if (pil == 3) return "Game";
+        if (pil == 4) return "Tools";
+        if (pil == 5) return "Web";
+        cout << "   [!] Pilihan tidak valid, silakan ulangi." << endl;
+    } while (pil < 1 || pil > 5);
+    return "General";
+}
+
 void insertLastPaper(ListPaper &L, addressPaper P) {
     if (L.first == nullptr) {
         L.first = P;
@@ -60,29 +81,29 @@ void addKeywordToPaper(ListPaper &L, string judulPaper, InfotypeKeyword dataKey)
         cout << "[Error] Paper '" << judulPaper << "' tidak ditemukan." << endl;
         return;
     }
-
     addressKeyword K_Baru;
     createElementKeyword(dataKey, K_Baru);
+
     int pilihan = -99;
     cout << "\n>>> OPSI TAMBAH KEYWORD KE: " << P->info.judul << " <<<" << endl;
-    cin>>pilihan;
+    cout << "1. Insert First (Awal)" << endl;
+    cout << "2. Insert Last (Akhir)" << endl;
+    cout << "3. Insert After (Setelah Keyword Tertentu)" << endl;
+    cout << "Pilihan Anda (1-3): ";
+    cin >> pilihan;
 
     switch (pilihan) {
         case 1:
-            // --- Insert First ---
             insertFirstKeyword(P->firstKeyword, K_Baru);
             cout << "[Sukses] Keyword ditambahkan di awal." << endl;
             break;
 
         case 2:
-            // --- Insert Last ---
             insertLastKeyword(P->firstKeyword, K_Baru);
             cout << "[Sukses] Keyword ditambahkan di akhir." << endl;
             break;
 
         case 3: {
-            // --- Insert After ---
-            // Pakai kurung kurawal {} karena ada deklarasi variabel di dalam case
             if (P->firstKeyword == nullptr) {
                 cout << "[Info] List kosong, otomatis insert first." << endl;
                 insertFirstKeyword(P->firstKeyword, K_Baru);
@@ -99,6 +120,7 @@ void addKeywordToPaper(ListPaper &L, string judulPaper, InfotypeKeyword dataKey)
                     cout << "[Sukses] Keyword ditambahkan setelah '" << namaPrec << "'." << endl;
                 } else {
                     cout << "[Gagal] Keyword '" << namaPrec << "' tidak ditemukan. Batal insert." << endl;
+                    delete K_Baru;
                     return;
                 }
             }
@@ -107,6 +129,7 @@ void addKeywordToPaper(ListPaper &L, string judulPaper, InfotypeKeyword dataKey)
 
         default:
             cout << "[Error] Pilihan tidak valid." << endl;
+            delete K_Baru;
             return;
     }
     cout << "\n[UPDATE DATA PAPER: " << P->info.judul << "]" << endl;

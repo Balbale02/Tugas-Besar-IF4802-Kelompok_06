@@ -1,89 +1,69 @@
 #include "main_user.h"
 #include "Paper.h"
 
-void menuUser(){
-    ListPaper L;
+void menuUser(ListPaper &L) {
     addressPaper P, q, prev;
     addressKeyword k, r, Prev, curr;
     InfotypePaper dataPaper;
     InfotypeKeyword dataK;
     string judulCari, pilihKategori;
-    int option=-99, pilihTahun;
-
-    createListPaper(L);
+    int option = -99;
 
     while (option != 0) {
         system("cls");
-        cout << "===========================Menu==================================" << endl;
-        cout << "|| 1. Insert paper berdasarkan tahun terbit                    ||" << endl;
-        cout << "|| 2. Pembersihan paper invalid berdasarkan tahun akreditasi   ||" << endl;
-        cout << "|| 3. Insert Keyword berdasarkan besar relevansi               ||" << endl;
-        cout << "|| 4. Hapus keyword yang mengandung kategori tertentu          ||" << endl;
-        cout << "|| 5. komputasi                                                ||" << endl;
-        cout << "|| 6. Mencari paper dengan tahun terbit tertentu               ||" << endl;
-        cout << "|| 7. View paper                                               ||" << endl;
-        cout << "|| 8. Menampilkan keyword semua keyword secara unik            ||" << endl;
-        cout << "|| 9. Tampilkan seluruh data                                   ||" << endl;
-        cout << "|| 0. back                                                     ||" << endl;
-        cout << "================================================================ " << endl;
+        cout << "========================== USER MENU ============================" << endl;
+        cout << "|| 1. Insert Paper (Sorted by Tahun Terbit)                    ||" << endl;
+        cout << "|| 2. Bersihkan Paper Invalid (Range Tahun)                    ||" << endl;
+        cout << "|| 3. Insert Keyword (Sorted by Relevansi)                     ||" << endl;
+        cout << "|| 4. Hapus Keyword Kategori Tertentu (Bulk Delete)            ||" << endl;
+        cout << "|| 5. Komputasi (Coming Soon)                                  ||" << endl;
+        cout << "|| 6. Cari Paper by Tahun (Coming Soon)                        ||" << endl;
+        cout << "|| 7. View Paper (Parent Only)                                 ||" << endl;
+        cout << "|| 8. View Unik Keyword (Coming Soon)                          ||" << endl;
+        cout << "|| 9. Tampilkan Seluruh Data (Parent + Child)                  ||" << endl;
+        cout << "|| 0. Back                                                     ||" << endl;
+        cout << "=================================================================" << endl;
         cout << "Choose your option : ";
         cin >> option;
         switch(option) {
-           case 1: {
-            bool inserted = false;
+           case 1: { // Gunakan kurung kurawal {}
+                bool inserted = false;
+                cout << "\n--- Insert Paper Terurut Tahun ---" << endl;
+                cout << "Judul        : "; cin >> dataPaper.judul;
+                cout << "DOI          : "; cin >> dataPaper.doi;
+                cout << "Penulis      : "; cin >> dataPaper.penulis;
+                cout << "Email        : "; cin >> dataPaper.email;
+                cout << "Afiliasi     : "; cin >> dataPaper.afiliasi;
+                cout << "Tahun Terbit : "; cin >> dataPaper.tahunTerbit;
 
-            cout << "Paper akan dimasukan dari paper yang paling lama diterbitkan hingga yang terbaru" << endl;
-            cout << "Silahkan masukan data paper" << endl;
+                createElementPaper(dataPaper, P);
 
-            cout << "Judul        : ";
-            cin >> dataPaper.judul;
-            cout << "DOI          : ";
-            cin >> dataPaper.doi;
-            cout << "Penulis      : ";
-            cin >> dataPaper.penulis;
-            cout << "Email        : ";
-            cin >> dataPaper.email;
-            cout << "Afiliasi     : ";
-            cin >> dataPaper.afiliasi;
-            cout << "Tahun Terbit : ";
-            cin >> dataPaper.tahunTerbit;
-
-            createElementPaper(dataPaper, P);
-
-
-            if (L.first == nullptr) {
-                insertFirstPaper(L, P);
-            }
-
-            else if (dataPaper.tahunTerbit < L.first->info.tahunTerbit) {
-                insertFirstPaper(L, P);
-            }
-
-            else {
-                q = L.first;
-                while (q->next != nullptr) {
-                    if (dataPaper.tahunTerbit < q->next->info.tahunTerbit) {
-                        insertAfterPaper(L, q, P);
-                        inserted = true;
-                        break;
+                if (isPaperEmpty(L)) {
+                    insertFirstPaper(L, P);
+                }
+                else if (dataPaper.tahunTerbit < L.first->info.tahunTerbit) {
+                    insertFirstPaper(L, P);
+                }
+                else {
+                    q = L.first;
+                    while (q->next != nullptr) {
+                        if (dataPaper.tahunTerbit < q->next->info.tahunTerbit) {
+                            insertAfterPaper(L, q, P);
+                            inserted = true;
+                            break;
+                        }
+                        q = q->next;
                     }
-                    q = q->next;
+                    if (!inserted) {
+                        insertLastPaper(L, P);
+                    }
                 }
-
-
-                if (!inserted) {
-                    insertLastPaper(L, P);
-                }
+                cout << "[Sukses] Paper berhasil dimasukkan." << endl;
+                cout << "\nTekan ENTER untuk kembali ke menu...";
+                cin.ignore();
+                cin.get();
+                break;
             }
-
-            cout << endl;
-            cout << "Paper berhasil dimasukan dalam list" << endl;
-            cout << "\nTekan ENTER untuk kembali ke menu...";
-            cin.ignore();
-            cin.get();
-
-            break;
-        }
 
            case 2  :
                int tahunaMaks, tahunMin;
@@ -159,11 +139,10 @@ void menuUser(){
                 if(q == nullptr){
                     cout << "Judul tidak ditemukan!" << endl;
                 }else{
-                    cout << "Keyowrd akan dimasukan terurut berdasarkan relevansi" << endl;
+                    cout << "\n--- Input Keyword (Sorted Relevansi) ---" << endl;
                     cout << "Nama Keyword: ";
                     cin >> dataK.namaKeyword;
-                    cout << "Kategori: ";
-                    cin >> dataK.kategori;
+                    dataK.kategori = pilihKategoriValid();
                     cout << "Relevansi (1-10): ";
                     cin >> dataK.relevansi;
 
@@ -217,7 +196,7 @@ void menuUser(){
                 printAllData(L);
 
                 cout << "Pilih kategori keyword yang ingin dihapus: ";
-                cin >> pilihKategori;
+                pilihKategori = pilihKategoriValid();
 
                 q = L.first;
                 while(q != nullptr){
@@ -238,6 +217,7 @@ void menuUser(){
                                 deleteAfterKeyword(Prev, k);
                                 curr = Prev->next;
                             }
+                            delete k;
                         }else{
                             Prev = curr;
                             curr = curr->next;

@@ -49,6 +49,7 @@ void sortPapersByTitle(ListPaper &L);                                           
 void sortEverythingAscending(ListPaper &L);                                         //Iqbal
 bool isPaperEmpty(ListPaper &L);                                                    // Akhtar
 void sortKeywordsInPaper(addressPaper P);                                           //Akhtar
+string pilihKategoriValid();                                                        //Iqbal
 #endif
 
 

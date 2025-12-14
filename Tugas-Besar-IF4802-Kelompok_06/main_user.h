@@ -4,7 +4,5 @@
 #include "Paper.h"
 using namespace std;
 
-void menuUser();
-int countPaper(ListPaper L); //bale
-int countAverageRelevance(ListPaper L, string judulPaper); //Akhtar
+void menuUser(ListPaper &L);
 #endif // MAIN_USER_H_INCLUDED
